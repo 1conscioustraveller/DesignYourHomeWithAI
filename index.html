@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeDesign AI | Future Home Design Experience</title>
+    <style>
+        :root {
+            --primary: #2a3b4c;
+            --secondary: #7e57c2;
+            --accent: #26a69a;
+            --light: #f5f7fa;
+            --dark: #1a2430;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #e0e6ed 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-img {
+            height: 200px;
+            background: linear-gradient(135deg, #7e57c2 0%, #26a69a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .demo-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin: 4rem 0;
+        }
+        
+        .demo-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .demo-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .demo-step:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            background: var(--secondary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .tech-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .tech-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        /* VR Demo Elements */
+        .vr-demo {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #1a2430 0%, #2a3b4c 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 3rem 0;
+        }
+        
+        .vr-goggles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 150px;
+            background: #111;
+            border-radius: 20px;
+            box-shadow: 0 0 0 10px #333, 0 0 0 15px #222, 0 0 30px rgba(0, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: cyan;
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .vr-goggles::before,
+        .vr-goggles::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00ffff 0%, transparent 70%);
+            opacity: 0.5;
+        }
+        
+        .vr-goggles::before {
+            left: 20px;
+        }
+        
+        .vr-goggles::after {
+            right: 20px;
+        }
+        
+        .vr-room {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 10px #333, 0 0 0 15px #222, 0 0 30px rgba(0, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 0 10px #333, 0 0 0 15px #222, 0 0 50px rgba(0, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 0 10px #333, 0 0 0 15px #222, 0 0 30px rgba(0, 255, 255, 0.5); }
+        }
+        
+        .ai-interface {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .ai-chat {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+        
+        .ai-message {
+            background: #e3f2fd;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #bb86fc;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">HomeDesign<span>AI</span></div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Design Your Dream Home with AI</h1>
+            <p>Experience the future of home design with our cutting-edge AI technology and immersive VR tools. Create, visualize, and modify your living spaces like never before.</p>
+            <a href="#demo" class="btn">Start the Demo</a>
+        </section>
+
+        <section id="features">
+            <div class="section-title">
+                <h2>Revolutionary Features</h2>
+                <p>Discover how our advanced technology transforms home design</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-img">🧠</div>
+                    <div class="feature-content">
+                        <h3>AI-Powered Design Suggestions</h3>
+                        <p>Our AI analyzes thousands of design patterns and your preferences to suggest perfect layouts, color schemes, and furniture arrangements.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-img">👓</div>
+                    <div class="feature-content">
+                        <h3>Immersive VR Experience</h3>
+                        <p>Step into your designed space with hyper-realistic VR technology. Experience every corner of your home before it's built.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-img">🔄</div>
+                    <div class="feature-content">
+                        <h3>Real-Time Modifications</h3>
+                        <p>Change materials, colors, and layouts with simple gestures. See your updates instantly reflected in the virtual environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo">
+            <div class="section-title">
+                <h2>Interactive Demo</h2>
+                <p>Follow these steps to experience the future of home design</p>
+            </div>
+            
+            <div class="demo-container">
+                <div class="demo-steps">
+                    <div class="demo-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Put on your NeuroLink VR Headset</h3>
+                            <p>Our advanced VR headset provides a fully immersive 360° view of your designed space with photorealistic graphics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Wear the Tactile Response Gloves</h3>
+                            <p>These gloves allow you to feel virtual textures and manipulate objects with realistic haptic feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Speak with your AI Design Assistant</h3>
+                            <p>Describe what you want to create or modify. The AI understands natural language and can make suggestions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Interact with Gesture Controls</h3>
+                            <p>Use intuitive hand gestures to move walls, change furniture, or adjust lighting in real-time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3>Experience Your Design in Life-Size VR</h3>
+                            <p>Walk through your designed space, make adjustments, and truly experience what it would feel like to live there.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vr-demo">
+                    <div class="vr-goggles">VR</div>
+                    <div class="vr-room">Your future living room generated in real-time by our AI</div>
+                </div>
+                
+                <div class="ai-interface">
+                    <h3>Chat with your AI Design Assistant</h3>
+                    <div class="ai-chat">
+                        <div class="message ai-message">Hello! I'm your AI design assistant. How can I help you design your home today?</div>
+                        <div class="message user-message">I'd like a modern living room with a minimalist style.</div>
+                        <div class="message ai-message">Great choice! I've generated 3 minimalist modern living room concepts for you. Would you like to see them in VR?</div>
+                        <div class="message user-message">Yes, please show me the first concept.</div>
+                        <div class="message ai-message">Displaying concept one now. You can use your gloves to rearrange furniture or change materials by tapping on them.</div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type your instructions for the AI...">
+                        <button class="btn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technology">
+            <div class="section-title">
+                <h2>Advanced Technology</h2>
+                <p>The cutting-edge tools that make this possible</p>
+            </div>
+            
+            <div class="tech-showcase">
+                <div class="tech-item">
+                    <div class="tech-icon">🧤</div>
+                    <h3>Haptic Response Gloves</h3>
+                    <p>Experience realistic touch feedback with our advanced haptic technology that simulates textures and resistance.</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">👁️</div>
+                    <h3>Neural Tracking Headsets</h3>
+                    <p>Our headsets track eye movement and neural patterns to predict design preferences and reduce motion sickness.</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">📡</div>
+                    <h3>Quantum Processing AI</h3>
+                    <p>Powered by quantum computing, our AI can process millions of design possibilities in seconds.</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🌐</div>
+                    <h3>Global Design Network</h3>
+                    <p>Access design ideas and elements from a global database of architectural styles and interior design trends.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About HomeDesign AI</h3>
+                <p>We're pioneering the future of home design with AI and immersive technology, making custom home design accessible to everyone.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@homedesignai.com</p>
+                <p>Phone: +1 (555) 123-DESIGN</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Experience Centers</h3>
+                <p>Visit our physical locations in New York, Tokyo, and London to try our technology in person.</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2035 HomeDesign AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactive elements for demonstration
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoSteps = document.querySelectorAll('.demo-step');
+            
+            demoSteps.forEach(step => {
+                step.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+            
+            const chatInput = document.querySelector('.chat-input input');
+            const chatButton = document.querySelector('.chat-input .btn');
+            const chatContainer = document.querySelector('.ai-chat');
+            
+            chatButton.addEventListener('click', function() {
+                if (chatInput.value.trim() !== '') {
+                    const userMessage = document.createElement('div');
+                    userMessage.classList.add('message', 'user-message');
+                    userMessage.textContent = chatInput.value;
+                    chatContainer.appendChild(userMessage);
+                    
+                    chatInput.value = '';
+                    
+                    // Simulate AI response after a short delay
+                    setTimeout(function() {
+                        const aiMessage = document.createElement('div');
+                        aiMessage.classList.add('message', 'ai-message');
+                        aiMessage.textContent = "I understand your request. I'm updating the design now. Would you like to see the changes in VR?";
+                        chatContainer.appendChild(aiMessage);
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                    }, 1000);
+                    
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            });
+            
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    chatButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
